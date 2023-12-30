@@ -15,6 +15,7 @@ export const getItems=()=>dispatch=>{//dispatch allows use to make a request
     .catch(err=>dispatch(returnErrors(err.response.data, err.response.status)));
 };//sends the GET_ITEMS to ../reducer/itemReducer
 
+
 export const addItem=(item)=>(dispatch, getState)=>{
     axios
     .post('/api/items', item, tokenConfig(getState))//passes item (obtained from onSubmit from itemModal) to api/items in router
