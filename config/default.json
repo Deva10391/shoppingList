@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://devashish15262:shoppingListAppP123@cluster0.l4ew0u6.mongodb.net/Cluster0?retryWrites=true&w=majority",
+    "jwtSecret": "sl_myJwtSecret"
+}
