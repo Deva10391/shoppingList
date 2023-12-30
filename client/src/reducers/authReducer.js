@@ -1,21 +1,21 @@
-import{ USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL} from '../actions/types';
+import { USER_LOADING, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL } from '../actions/types';
 
-const initialState={
+const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     isLoading: false,
     user: null
 }
 
-export default function(state=initialState, action){
-    switch(action.type){
+const authReducer = (state = initialState, action) => {
+    switch (action.type) {
         case USER_LOADING:
-            return{
+            return {
                 ...state,
                 isLoading: true
             };
         case USER_LOADED://verifies that user is logged in EVERY SECOND
-            return{
+            return {
                 ...state,
                 isAuthenticated: true,
                 isLoading: false,
@@ -24,7 +24,7 @@ export default function(state=initialState, action){
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
             localStorage.setItem('token', action.payload.token);
-            return{
+            return {
                 ...state,
                 isAuthenticated: true,
                 isLoading: false,
@@ -35,7 +35,7 @@ export default function(state=initialState, action){
         case LOGOUT_SUCCESS:
         case REGISTER_FAIL:
             localStorage.removeItem('token');
-            return{
+            return {
                 ...state,
                 token: null,
                 isAuthenticated: false,
@@ -46,3 +46,5 @@ export default function(state=initialState, action){
             return state;
     }
 }
+
+export default authReducer;
